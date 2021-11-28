@@ -39,15 +39,18 @@ class VMKtable:
         return self.dictionary[spec][2]["id"].index(str(id)) + 1
 
     def get_score(self, id: str, spec: int, budget: bool):
-        idx = self.get_rank(id, spec)
+        idx = self.get_rank(id, spec, budget)
         if budget:
             return self.dictionary[spec][1]["score"][idx - 1]
         return self.dictionary[spec][2]["score"][idx - 1]
     
     def get_median_above(self, id: str, spec: int, budget: bool):
-        idx = self.get_rank(id, spec)
-        if budget:
+        idx = self.get_rank(id, spec, budget)
+        if budget and idx != 1:
             return median([int(x) for x in self.dictionary[spec][1]["score"][:idx-1]])
-        return median([int(x) for x in self.dictionary[spec][2]["score"][:idx-1]])
+        elif idx != 1:
+            return median([int(x) for x in self.dictionary[spec][2]["score"][:idx-1]])
+        else:
+            return -1
 
         

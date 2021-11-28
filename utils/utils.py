@@ -32,7 +32,8 @@ def info_message(tgid: int) -> int:
             rank = Table.get_rank(id, spec, budget)
             median = Table.get_median_above(id, spec, budget)
             answer += f"На направлении {decode_spec(faculty_encode['speciality'], spec)}({decode_spec(faculty_encode['category'], budget)}) вы на {rank} месте.\n"
-            answer += f"Средний балл среди поступающих выше вас по списку: {median}\n\n"
+            if median != -1:
+                answer += f"Средний балл среди поступающих выше вас по списку: {median}\n\n"
         except:
             answer += f"Извините, не смогли найти вас в списках {decode_spec(faculty_encode['speciality'], spec)}({decode_spec(faculty_encode['category'], budget)})\n"
     return answer
