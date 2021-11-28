@@ -7,13 +7,13 @@ class VMKtable:
     
     def __init__(self):
         self.dictionary = {
-            # 203:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
-            # 369:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
-            # 559:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
-            # 1084:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
+            203:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
+            369:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
+            559:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
+            1084:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
             166:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
-            # 167:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
-            # 370:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}}
+            167:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
+            370:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}}
         }
         self.url = lambda spec, type: f"https://abiturient.kpfu.ru/entrant/abit_entrant_originals_list?p_open=&p_typeofstudy=1&p_faculty=9&p_speciality=" + str(spec) + "&p_inst=0&p_category=" + str(type)
         self.parser()
