@@ -1,5 +1,5 @@
-BOT_TOKEN = '2139729122:AAF5KFfdWDB_EYDkgekPTZjifDWA3UWouCY'
-NOTIFICATION_WAIT = 60*30   # 5 секунд
+BOT_TOKEN = '**********:***********************************'
+NOTIFICATION_WAIT = 60*60   # 1 час
 PARSER_WAIT = 60*5    # 5 минут
 
 faculty_encode = {
@@ -11,7 +11,7 @@ faculty_encode = {
         "иб": 369,
         "пи": 1084,
         "пми": 166,
-        "фиит": 1508,
+        "фиит": 167,
         "ист": 370,
         "пм": 559
     },

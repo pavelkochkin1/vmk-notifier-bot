@@ -41,6 +41,10 @@ class Database:
     def delete_spec(self, tgid: int, spec: str):
         with self.connection:
             return self.cursor.execute("DELETE FROM base WHERE (tgid, speciality) = (?,?)", (tgid, spec,))
+    
+    def is_spec_there(self, tgid: int, spec: str):
+        result = self.cursor.execute("SELECT * FROM base WHERE (tgid, speciality) = (?,?)", (tgid, spec))
+        return bool(len(result.fetchall()))
 
     def close(self):
         self.connection.close()

@@ -6,19 +6,19 @@ from data.messages import start_message, help_message
 from utils.utils import decode_spec, is_full_match, is_valid_id, info_message
 from data.config import NOTIFICATION_WAIT, PARSER_WAIT
 
-# message after start command
+# команда старт
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
     await bot.delete_message(message.chat.id, message.message_id)
     await bot.send_message(message.from_user.id, start_message, reply_markup=keyboard_sub)
 
-# message after help command
+# команда
 @dp.message_handler(commands = ["help"])
 async def help(message: types.Message):
     await bot.delete_message(message.chat.id, message.message_id)
     await bot.send_message(message.from_user.id, help_message)
 
-# registration command
+# команда для добавления направления
 @dp.message_handler(commands = ["registration", "reg"], commands_prefix = "/!")
 async def record(message: types.Message):
     await bot.delete_message(message.chat.id, message.message_id)
@@ -32,10 +32,12 @@ async def record(message: types.Message):
                 await bot.send_message(message.from_user.id, f"✅ Вы добавили в отслеживание: {decode_spec(faculty_encode['speciality'], spec)}")
             else:
                 await bot.send_message(message.from_user.id, "⚠️ Это направление уже добавлено.")
+        else:
+            raise ValueError
     except:
         await bot.send_message(message.from_user.id, "❌ Данные поданы не в верном формате.\n⛑ Введите команду /help, чтобы узнать подробнее.")
     
-# list command
+# команда для вывода списка отслеживаемых направлений
 @dp.message_handler(commands=["list"], commands_prefix = "/!")
 async def get_list(message: types.Message):
     await bot.delete_message(message.chat.id, message.message_id)
@@ -48,19 +50,19 @@ async def get_list(message: types.Message):
     else:
         await bot.send_message(message.from_user.id, "😢 Вы еще не добавили направления для отслеживания. \n⛑ Введите команду /help, чтобы узнать подробнее.")
 
-# delete command
+# команда удалить
 @dp.message_handler(commands=['delete'], commands_prefix = "/!")
 async def get_list(message: types.Message):
     await bot.delete_message(message.chat.id, message.message_id)
     info = message.text.split()
     spec = faculty_encode['speciality'][info[1]]
-    try:
+    if(BotDB.is_spec_there((message.from_user.id), spec)):
         BotDB.delete_spec(message.from_user.id, spec)
         await bot.send_message(message.from_user.id, f"🤖 Направление {info[1]} удалено из вашего списка.")
-    except:
+    else:
         await bot.send_message(message.from_user.id, f"😢 У вас нет в списке направления {info[1]}.")
 
-# snils command
+# команда вывода снилс
 @dp.message_handler(commands=['snils'], commands_prefix = "/!")
 async def get_snils(message: types.Message):
     await bot.delete_message(message.chat.id, message.message_id)

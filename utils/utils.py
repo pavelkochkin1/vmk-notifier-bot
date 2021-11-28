@@ -27,11 +27,11 @@ def info_message(tgid: int) -> int:
     for row in res:
         id = row[0]
         spec = row[2]
-        try:
-            rank = Table.get_rank(id, spec)
-            median = Table.get_median_above(id, spec)
-            answer += f"На направлении {decode_spec(faculty_encode['speciality'], spec)} вы на {rank} месте.\n"
-            answer += f"Средний балл среди поступающих выше вас по списку: {median}\n\n"
-        except:
-            answer += f"Извините, не смогли найти вас в списках {decode_spec(faculty_encode['speciality'], spec)}\n"
+        # try:
+        rank = Table.get_rank(id, spec)
+        median = Table.get_median_above(id, spec)
+        answer += f"На направлении {decode_spec(faculty_encode['speciality'], spec)} вы на {rank} месте.\n"
+        answer += f"Средний балл среди поступающих выше вас по списку: {median}\n\n"
+        # except:
+        #     answer += f"Извините, не смогли найти вас в списках {decode_spec(faculty_encode['speciality'], spec)}\n"
     return answer
