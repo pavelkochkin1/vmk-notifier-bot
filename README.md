@@ -9,9 +9,9 @@
 5. Старт контейнера `docker start [CONTAINER ID]`
 
 ## Source code
-* [simpsons_baseline.ipynb](simpsons_baseline.ipynb) contains my research
-* [demo.py](demo.py) contains server logic
-* [model/model.py](model/model.py) class of model
+* [data](data/) содержит конфиг бота
+* [utils](utils/) содержит класс парсера, класс базыданных и 
+* [loader] 
 * [templates](templates/) and [static](static/) includes html and css files for app
 * [Dockerfile](Dockerfile) describes a Docker image that is used to run the app
 

@@ -98,26 +98,26 @@ async def get_info(message: types.Message):
         BotDB.update_sub(message.from_user.id, False)
         await bot.send_message(message.from_user.id, "😓 Вы отписались от рассылки.", reply_markup=keyboard_sub)
 
-# # function for notification
-# async def notification(wait_for):
-#     while True:
-#         await asyncio.sleep(wait_for)
-#         result = BotDB.get_subsriptions()
-#         if (len(result) > 0):
-#             check = []
-#             for row in result:
-#                 if row[1] not in check:
-#                     await bot.send_message(row[1], "📨 Рассылка:\n" + info_message(row[1]), disable_notification=True)
-#                     check.append(row[1])
+# function for notification
+async def notification(wait_for):
+    while True:
+        await asyncio.sleep(wait_for)
+        result = BotDB.get_subsriptions()
+        if (len(result) > 0):
+            check = []
+            for row in result:
+                if row[1] not in check:
+                    await bot.send_message(row[1], "📨 Рассылка:\n" + info_message(row[1]), disable_notification=True)
+                    check.append(row[1])
 
-# # function for parsing website by schedule
-# async def scheduled(wait_for):
-#     while True:
-#         await asyncio.sleep(wait_for)
-#         Table.parser()
+# function for parsing website by schedule
+async def scheduled(wait_for):
+    while True:
+        await asyncio.sleep(wait_for)
+        Table.parser()
 
 
 if __name__ == '__main__':
-    # loop.create_task(scheduled(PARSER_WAIT))
-    # loop.create_task(notification(NOTIFICATION_WAIT))
+    loop.create_task(scheduled(PARSER_WAIT))
+    loop.create_task(notification(NOTIFICATION_WAIT))
     executor.start_polling(dp, skip_updates=True)
