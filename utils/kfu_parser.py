@@ -7,13 +7,13 @@ class VMKtable:
     
     def __init__(self):
         self.dictionary = {
-            203:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
-            369:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
-            559:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
-            1084:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
+            # 203:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
+            # 369:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
+            # 559:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
+            # 1084:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
             166:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
-            167:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
-            370:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}}
+            # 167:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}},
+            # 370:{1:{"id":[],"score":[]}, 2:{"id":[],"score":[]}}
         }
         self.url = lambda spec, type: f"https://abiturient.kpfu.ru/entrant/abit_entrant_originals_list?p_open=&p_typeofstudy=1&p_faculty=9&p_speciality=" + str(spec) + "&p_inst=0&p_category=" + str(type)
         self.parser()
@@ -33,20 +33,20 @@ class VMKtable:
                         self.dictionary[spec][type]["id"].append(str(stud[1]))
                         self.dictionary[spec][type]["score"].append(str(stud[6]))
         
-    def get_rank(self, id: str, spec: int):
-        if id in self.dictionary[spec][1]["id"]:
+    def get_rank(self, id: str, spec: int, budget: bool):
+        if budget:
             return self.dictionary[spec][1]["id"].index(str(id)) + 1
         return self.dictionary[spec][2]["id"].index(str(id)) + 1
 
-    def get_score(self, id: str, spec: int):
+    def get_score(self, id: str, spec: int, budget: bool):
         idx = self.get_rank(id, spec)
-        if id in self.dictionary[spec][1]["id"]:
+        if budget:
             return self.dictionary[spec][1]["score"][idx - 1]
         return self.dictionary[spec][2]["score"][idx - 1]
     
-    def get_median_above(self, id: str, spec: int):
+    def get_median_above(self, id: str, spec: int, budget: bool):
         idx = self.get_rank(id, spec)
-        if id in self.dictionary[spec][1]["id"]:
+        if budget:
             return median([int(x) for x in self.dictionary[spec][1]["score"][:idx-1]])
         return median([int(x) for x in self.dictionary[spec][2]["score"][:idx-1]])
 

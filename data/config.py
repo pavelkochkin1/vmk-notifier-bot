@@ -1,6 +1,6 @@
-BOT_TOKEN = '**********:***********************************'
+BOT_TOKEN = '2139729122:AAF5KFfdWDB_EYDkgekPTZjifDWA3UWouCY'
 NOTIFICATION_WAIT = 60*60   # 1 час
-PARSER_WAIT = 60*5    # 5 минут
+PARSER_WAIT = 60*10   # 5 минут
 
 faculty_encode = {
     "faculty": {
@@ -17,6 +17,10 @@ faculty_encode = {
     },
     "inst": {
         "кфу": 0 
+    },
+    "category":{
+        'бюджет':1,
+        'внебюджет':0
     }
 }
 
