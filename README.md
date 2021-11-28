@@ -11,15 +11,8 @@
 ## Source code
 * [data](data/) содержит конфиг бота
 * [utils](utils/) содержит класс парсера, класс базыданных и 
-* [loader] 
-* [templates](templates/) and [static](static/) includes html and css files for app
-* [Dockerfile](Dockerfile) describes a Docker image that is used to run the app
+* [loader.py](loader.py) подгружает нужные классы и самого бота
+* [app.py] включает в себя всю
+* [Dockerfile](Dockerfile) логика сервера для загрузки бота
 
-## Example
-1. Run the docker container and open the `http://localhost:8888/`.
-![alt text](ref/first.png)
-2. Upload your image and press `Predict` button.
-![alt text](ref/second.png)
-3. Now we have prediction and probability.
-![alt text](ref/third.png)
 
