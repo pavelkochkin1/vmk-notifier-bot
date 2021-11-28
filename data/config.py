@@ -1,4 +1,4 @@
-BOT_TOKEN = '2139729122:AAF5KFfdWDB_EYDkgekPTZjifDWA3UWouCY'
+BOT_TOKEN = '**********:***********************************'
 NOTIFICATION_WAIT = 60*60   # 1 час
 PARSER_WAIT = 60*10   # 5 минут
 
